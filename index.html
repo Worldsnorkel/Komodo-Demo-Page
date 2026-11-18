@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<title>Komodo Island, Indonesia — A Traveller's Guide</title>
+<style>
+  /* Palette + fonts matched to worldsnorkel.com (uICore theme):
+     dark teal background #3C5359, cyan accent/headlines #8DD4DF,
+     body text #E9E8E3, secondary #A4A4A4, Montserrat (300 body / 400 headings) */
+  :root {
+    --bg: #3B4550;
+    --headline: #82C9D9;
+    --accent: #82C9D9;
+    --accent-hover: #9EDBE4;
+    --text: #E8EAEC;
+    --secondary: #A4A4A4;
+    --line: rgba(130, 201, 217, 0.25);
+    --placeholder: rgba(255, 255, 255, 0.06);
+    --font: "Montserrat", "Segoe UI", sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-weight: 300;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- top bar ---------- */
+  .topbar {
+    border-bottom: 1px solid var(--line);
+    background: rgba(0, 0, 0, 0.12);
+  }
+  .topbar .wrap {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .masthead {
+    font-size: 14px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--headline);
+  }
+  .topbar .kicker {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--secondary);
+    font-weight: 400;
+  }
+
+  /* ---------- sections ---------- */
+  section {
+    padding: 72px 0 24px;
+  }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-size: 52px;
+    line-height: 1.12;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+    margin-bottom: 18px;
+    color: var(--headline);
+  }
+  h2 {
+    font-size: 44px;
+    line-height: 1.15;
+    font-weight: 300;
+    margin-bottom: 16px;
+    color: var(--headline);
+  }
+  /* short dash under each heading, like the reference page */
+  h1::after,
+  h2::after {
+    content: "";
+    display: block;
+    width: 52px;
+    height: 3px;
+    background: var(--accent);
+    margin-top: 22px;
+    margin-bottom: 26px;
+    border-radius: 2px;
+  }
+  .standfirst {
+    font-size: 19px;
+    color: var(--text);
+    max-width: 62ch;
+    margin-bottom: 28px;
+    font-weight: 300;
+    line-height: 1.75;
+  }
+  .body-copy p {
+    max-width: 68ch;
+    margin-bottom: 20px;
+    font-size: 19px;
+    color: var(--text);
+  }
+
+  /* ---------- image placeholders ---------- */
+  .img-placeholder {
+    background:
+      repeating-linear-gradient(45deg, transparent 0 14px, rgba(141, 212, 223, 0.06) 14px 15px),
+      var(--placeholder);
+    border: 1px dashed rgba(141, 212, 223, 0.45);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--secondary);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin: 32px 0;
+  }
+  .img-placeholder svg { opacity: 0.6; }
+  .img-placeholder.hero { height: 380px; }
+  .img-placeholder.standard { height: 300px; }
+  .hero-photo {
+    margin: 32px 0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .hero-photo img {
+    display: block;
+    width: 100%;
+    height: 440px;
+    object-fit: cover;
+  }
+  .map-embed {
+    margin: 32px 0;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    line-height: 0;
+  }
+  .map-embed iframe {
+    width: 100%;
+    height: 420px;
+    border: 0;
+  }
+  .caption {
+    font-size: 13px;
+    color: var(--secondary);
+    margin-top: -16px;
+    margin-bottom: 20px;
+  }
+
+  /* ---------- divider ---------- */
+  .rule {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 56px 0 0;
+  }
+
+  /* ---------- call-to-action buttons ---------- */
+  .cta-row {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: flex-start;
+    margin-top: 24px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
+    font-family: var(--font);
+    font-size: 19px;
+    font-weight: 300;
+    letter-spacing: 0;
+    text-transform: none;
+    text-decoration: none;
+    color: var(--accent);
+    padding: 0;
+    border-radius: 0;
+    transition: color 0.2s ease;
+  }
+  .btn:hover { color: var(--accent-hover); text-decoration: underline; }
+  .btn svg {
+    flex-shrink: 0;
+    transform: translateY(2px);
+    opacity: 0.85;
+  }
+  .btn-primary, .btn-secondary {
+    background: none;
+    border: none;
+    color: var(--accent);
+  }
+  .btn:active { opacity: 0.8; }
+
+  .btn-note {
+    font-size: 13px;
+    color: var(--secondary);
+    margin-top: 20px;
+  }
+
+  /* ---------- sample facts strip ---------- */
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 36px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 26px 0;
+  }
+  .fact h3 {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .fact p { font-size: 14px; color: var(--text); }
+
+  /* ---------- footer ---------- */
+  footer {
+    border-top: 1px solid var(--line);
+    margin-top: 72px;
+    padding: 28px 0 48px;
+    font-size: 12px;
+    color: var(--secondary);
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 640px) {
+    h1 { font-size: 34px; }
+    h2 { font-size: 30px; }
+    .btn { font-size: 16px; }
+    .facts { grid-template-columns: 1fr; }
+    .img-placeholder.hero { height: 260px; }
+    section { padding-top: 52px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="masthead">WorldSnorkel</div>
+    <div class="kicker">Travel Guide · Indonesia Series</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- SECTION 1: KOMODO ISLAND -->
+  <section id="komodo-island">
+    <div class="section-label">01 — The Destination</div>
+    <h1>Komodo Island, Indonesia</h1>
+    <p class="standfirst">A rugged volcanic island in the heart of the Lesser Sunda Islands, home to the world's largest lizard and some of the most striking pink-sand beaches in Southeast Asia.</p>
+
+    <figure class="hero-photo">
+      <img src="IMG_3360.jpeg" alt="View over the dry hills and crescent white-sand beaches of Komodo National Park, Indonesia" />
+    </figure>
+    <p class="caption">The viewpoint over Komodo National Park — dry volcanic hills and crescent beaches.</p>
+    <div class="body-copy">
+      <p>Komodo Island sits within Komodo National Park, a UNESCO World Heritage Site shared between the islands of Komodo, Rinca, and Padar. It is best known as the natural habitat of the Komodo dragon, a monitor lizard that can grow over three metres long and is found wild in only a handful of places on Earth.</p>
+      <p>Beyond the dragons, travellers come for the hiking trails, the viewpoints over turquoise bays, snorkelling with manta rays, and quiet beaches — including the famous pink beach, coloured by fragments of red coral.</p>
+    </div>
+
+    <div class="facts">
+      <div class="fact">
+        <h3>Best season</h3>
+        <p>April to June and September to November — sample guidance, check current conditions before travel.</p>
+      </div>
+      <div class="fact">
+        <h3>Getting around</h3>
+        <p>Boat tours from Labuan Bajo are the standard way to reach the islands.</p>
+      </div>
+      <div class="fact">
+        <h3>Park status</h3>
+        <p>UNESCO World Heritage Site since 1991; entry permits apply.</p>
+      </div>
+    </div>
+
+    <hr class="rule" />
+  </section>
+
+  <!-- SECTION 2: LOCATION -->
+  <section id="location">
+    <div class="section-label">02 — Where It Is</div>
+    <h2>Location: East Nusa Tenggara, Central Indonesia</h2>
+
+    <div class="map-embed">
+      <iframe
+        src="https://maps.google.com/maps?q=Komodo%20Island%2C%20Komodo%20National%20Park%2C%20Indonesia&z=8&output=embed"
+        title="Google Map showing the location of Komodo Island, Indonesia"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <p class="caption">Komodo Island lies between Sumbawa to the west and Flores to the east — open the map to explore.</p>
+
+    <div class="body-copy">
+      <p>Komodo Island is part of East Nusa Tenggara province, roughly 300 kilometres east of Bali. It lies in the strait between the larger islands of Sumbawa and Flores, and together with Rinca and Padar forms the core of Komodo National Park.</p>
+      <p>The nearest travel hub is the small port town of Labuan Bajo on Flores, which serves as the jumping-off point for nearly all trips to the park. There is no accommodation or settlement for visitors on Komodo Island itself — day trips and liveaboard boats operate out of Labuan Bajo.</p>
+    </div>
+
+    <hr class="rule" />
+  </section>
+
+  <!-- SECTION 3: GETTING THERE -->
+  <section id="getting-there">
+    <div class="section-label">03 — Access &amp; Next Steps</div>
+    <h2>Getting There</h2>
+
+    <div class="body-copy">
+      <p>Most travellers fly into Labuan Bajo (LBJ) via Bali or Jakarta — the flight from Bali takes around an hour. From Labuan Bajo, the park is reached by speedboat or slower phinisi sailing boat, with day trips, multi-day boat tours, and liveaboards all available through local operators. Once inside the park, ranger-guided walks are required to see the Komodo dragons safely.</p>
+      <p>Sample guidance only: confirm current flight routes, park permit rules, and tour operators with official sources before booking.</p>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn btn-primary" id="cta-booking"
+         href="https://www.bing.com/search?q=Komodo+National+Park+tours+from+Labuan+Bajo"
+         target="_blank" rel="noopener noreferrer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        Explore Tours &amp; Booking
+      </a>
+      <a class="btn btn-secondary" id="cta-communication"
+         href="https://www.indonesia.travel/gb/en/destinations/bali-nusa-tenggara/labuan-bajo"
+         target="_blank" rel="noopener noreferrer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-9 8.4 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.2a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5 8.38 8.38 0 0 1 8.5 8.5z"/></svg>
+        Official Tourism Info
+      </a>
+    </div>
+    <p class="btn-note">Both buttons open the linked travel pages in a new browser tab.</p>
+
+    <hr class="rule" />
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Komodo Island, Indonesia — sample travel guide page. All content is illustrative; verify travel details with official sources.
+  </div>
+</footer>
+
+<script>
+  // Ensure CTA buttons open in a new tab even if a link is added dynamically later.
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest("a.btn");
+    if (a && a.href) {
+      window.open(a.href, "_blank", "noopener");
+      e.preventDefault();
+    }
+  });
+</script>
+
+</body>
+</html>
